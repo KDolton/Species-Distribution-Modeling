@@ -47,9 +47,9 @@ occ_download(pred("taxonKey", speciesKey), format="SIMPLE_CSV")
  # GBIF Occurrence Download https://doi.org/10.15468/dl.g8bkku Accessed from R via rgbif (https://github.com/ropensci/rgbif) on 2024-02-13
 
 
-d <- occ_download_get('0012240-240202131308920', path="Data/") %>%
+d <- occ_download_get('0012240-240202131308920', path="data/") %>%
   occ_download_import()
-write_csv(d, "Data/rawData.csv")
+write_csv(d, "data/rawData.csv")
 
 
 #cleaning
