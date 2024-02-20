@@ -57,20 +57,39 @@ write_csv(d, "data/rawData.csv")
 fData<-d %>%
   filter(!is.na(decimalLatitude), !is.na(decimalLongitude))
 
-#filtering based on country code
+#filtering based on country code:
+
 fData<-fData %>%
   filter(countryCode %in% c("US", "CA", "MX"))
 
-#filtering based on these "" specifications -- as referenced form looking at the data
+fData <- fData %>% 
+  filter (countryCode == "US" | countryCode=="CA" | countryCode=="MX")
+
+#filtering based on these "" specifications -- as referenced form looking at the data:
+
 fData <- fData %>%
   filter(!basisOfRecord %in% c("FOSSIL_SPECIMEN", "LIVING_SPECIMEN"))
 
+#eliminates coordinates that appear to be in the ocean:
 
 fData <- fData %>%
   cc_sea(lon="decimalLongitude", lat="decimalLatitude")
 
+#removing duplicates in the data:
+#distinct means that if the data is the same in each row across all these columns it will only keep one
 
+fData <- fData %>%
+  distinct(decimalLongitude, decimalLatitude, speciesKey, datasetKey, .keep_all = TRUE)
 
+# you could do it all at once:
+# cleanData <- d %>%
+#   filter(!is.na(decimalLatitude), !is.na(decimalLongitude)) %>%
+#   filter(countryCode %in% c("US", "CA", "MX")) %>%
+#   filter (countryCode == "US" | countryCode=="CA" | countryCode=="MX") %>%
+#   filter(!basisOfRecord %in% c("FOSSIL_SPECIMEN", "LIVING_SPECIMEN")) %>%
+#   cc_sea(lon="decimalLongitude", lat="decimalLatitude") %>%
+#   distinct(decimalLongitude, decimalLatitude, speciesKey, datasetKey, .keep_all = TRUE) 
+  
 
 
 
