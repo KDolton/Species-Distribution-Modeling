@@ -90,7 +90,9 @@ fData <- fData %>%
 #   cc_sea(lon="decimalLongitude", lat="decimalLatitude") %>%
 #   distinct(decimalLongitude, decimalLatitude, speciesKey, datasetKey, .keep_all = TRUE) 
   
+write.csv(fData, "data/cleanedData.csv")
 
 
 
+#Need to catch up on notes ... below is where we picked up on Mar. 19th:
 

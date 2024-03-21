@@ -47,3 +47,11 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+
+
+#climate data
+data/wc2.1_2.5m/
+
+data/cmip6/wc2.1_2.5m/
+maxent_outputs/
